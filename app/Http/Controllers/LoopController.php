@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Loop;
 use Illuminate\Http\Request;
+use App\Models\Tag;
+
+
+
 
 class LoopController extends Controller
 {
@@ -15,31 +19,36 @@ class LoopController extends Controller
 
     public function create()
     {
-        return view('loops.create'); // formulario
+        $tags = Tag::all(); // Esto recupera todas las etiquetas existentes
+        return view('loops.create', compact('tags'));
     }
 
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'title' => 'required|string|max:100',
-            'description' => 'nullable|string',
-            'bpm' => 'nullable|integer',
-            'key_signature' => 'nullable|string|max:10',
-            'file' => 'required|file|mimes:mp3,wav|max:10000',
-        ]);
 
-        // Guardar archivo
-        $filename = $request->file('file')->store('loops', 'public');
+   public function store(Request $request)
+{
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'bpm' => 'nullable|integer',
+        'key_signature' => 'nullable|string|max:10',
+        'tags' => 'array',
+        'tags.*' => 'string|max:50',
+        // Añade otras validaciones según tu formulario
+    ]);
 
-        // Guardar en la base de datos
-        Loop::create([
-            'title' => $validated['title'],
-            'description' => $validated['description'],
-            'bpm' => $validated['bpm'],
-            'key_signature' => $validated['key_signature'],
-            'filename' => $filename,
-        ]);
+    $loop = Loop::create($request->only(['title', 'description', 'bpm', 'key_signature']));
 
-        return redirect()->route('loops.index')->with('success', 'Loop subido correctamente');
+    // Procesar etiquetas
+    if ($request->has('tags')) {
+        $tagIds = [];
+        foreach ($request->tags as $tagName) {
+            $tag = Tag::firstOrCreate(['name' => $tagName]);
+            $tagIds[] = $tag->id;
+        }
+        $loop->tags()->sync($tagIds);
     }
+
+    return redirect()->route('loops.index')->with('success', 'Loop creado con éxito');
+}
+
 }
