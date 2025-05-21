@@ -13,13 +13,10 @@ class LoopController extends Controller
         $tags = Tag::all();
         return view('loops.create', compact('tags'));
     }
+
   public function index()
 {
     $loops = \App\Models\Loop::with('tags')->latest()->get();
-    // Depuración: ¿qué tipo de objeto es $loops[0]?
-    if (count($loops)) {
-        dd(get_class($loops[0]), $loops[0]);
-    }
     return view('loops.index', compact('loops'));
 }
     public function store(Request $request)
@@ -30,10 +27,9 @@ class LoopController extends Controller
             'bpm' => 'nullable|integer',
             'key_signature' => 'nullable|string|max:10',
             'tags' => 'nullable|string',
-            'filename' => 'required|file|mimes:mp3,wav', // <-- valida el archivo
+            'filename' => 'required|file|mimes:mp3,wav',
         ]);
 
-        // Guarda el archivo y obtén la ruta
         $filename = $request->file('filename')->store('loops', 'public');
 
         $loop = Loop::create([
@@ -41,7 +37,7 @@ class LoopController extends Controller
             'description' => $request->input('description'),
             'bpm' => $request->input('bpm'),
             'key_signature' => $request->input('key_signature'),
-            'filename' => $filename, // <-- guarda el nombre del archivo
+            'filename' => $filename,
         ]);
 
         // Procesar etiquetas (formato Tagify)
