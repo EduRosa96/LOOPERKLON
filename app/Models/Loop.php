@@ -12,12 +12,14 @@ use App\Models\LoopTag;
 class Loop extends Model
 {
     protected $fillable = [
-        'title', 'description', 'filename', 'bpm', 'key_signature',
+        'title',
+        'description',
+        'filename',
+        'bpm',
+        'key_signature'
     ];
     public function tags()
-{
-    return $this->belongsToMany(Tag::class);
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }
-
-}
-

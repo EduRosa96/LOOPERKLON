@@ -9,9 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Tag extends Model
 {
+    protected $fillable = [
+        'name',
+    ];
     public function loops()
-{
-    return $this->belongsToMany(Loop::class);
-}
-
+    {
+        return $this->belongsToMany(Loop::class);
+    }
 }

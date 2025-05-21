@@ -1,4 +1,8 @@
-@extends('layouts.app') <!-- Si tienes una plantilla base, si no, elimina esta línea -->
+@extends('layouts.app')
+
+{{-- CDN de Tagify --}}
+<link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
 
 @section('content')
 <div class="container mt-5">
@@ -39,12 +43,7 @@
 
         <div class="mb-3">
             <label for="tags" class="form-label">Etiquetas</label>
-            <select name="tags[]" id="tags" multiple class="form-select">
-                @foreach($tags as $tag)
-                <option value="{{ $tag->name }}">{{ $tag->name }}</option>
-                @endforeach
-            </select>
-            <small class="form-text text-muted">Puedes seleccionar varias etiquetas.</small>
+            <input name="tags" id="tag-input" class="form-control" placeholder="rock, trap, jazz" />
         </div>
 
         <div class="mb-3">
@@ -54,5 +53,10 @@
 
         <button type="submit" class="btn btn-primary">Subir Loop</button>
     </form>
+
+    {{-- Tagify JS --}}
+    <script>
+        new Tagify(document.querySelector('#tag-input'));
+    </script>
 </div>
 @endsection
