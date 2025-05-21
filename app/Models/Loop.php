@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Loop extends Model
 {
+    protected $table = 'loops';
     protected $fillable = [
         'title',
         'description',

@@ -9,26 +9,22 @@
 <div class="alert alert-success">{{ session('success') }}</div>
 @endif
 
-@forelse ($loops as $loop)
+@forelse ($loops as $item)
     <div class="card mb-3">
         <div class="card-body">
-            <h5>{{ $loop->title }}</h5>
-            <p>{{ $loop->description }}</p>
-        <p>
-            <strong>BPM:</strong> {{ $loop->bpm ?? 'N/A' }} |
-            <strong>Tonalidad:</strong> {{ $loop->key_signature ?? 'N/A' }}
-        </p>
-        <audio controls>
-            <source src="{{ asset('storage/' . $loop->filename) }}" type="audio/mpeg">
-            Tu navegador no soporta el audio.
-        </audio>
-        <br>
-        <a href="{{ asset('storage/' . $loop->filename) }}" download class="btn btn-primary mt-2">
-            Descargar
-        </a>
+            <h5>{{ $item->title }}</h5>
+            <p>{{ $item->description }}</p>
+            <p>
+                <strong>BPM:</strong> {{ $item->bpm ?? 'N/A' }} |
+                <strong>Tonalidad:</strong> {{ $item->key_signature ?? 'N/A' }}
+            </p>
+            <audio controls>
+                <source src="{{ asset('storage/' . $item->audio_path) }}" type="audio/mpeg">
+                Tu navegador no soporta la reproducción de audio.
+            </audio>
+        </div>
     </div>
-</div>
 @empty
-<p>No hay loops aún.</p>
+    <p>No hay loops disponibles.</p>
 @endforelse
 @endsection

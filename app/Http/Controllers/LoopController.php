@@ -14,11 +14,12 @@ class LoopController extends Controller
         return view('loops.create', compact('tags'));
     }
 
-  public function index()
-{
-    $loops = \App\Models\Loop::with('tags')->latest()->get();
-    return view('loops.index', compact('loops'));
-}
+    public function index()
+
+    {
+        $loops = Loop::all();
+        return view('loops.index', compact('loops'));
+    }
     public function store(Request $request)
     {
         $request->validate([
