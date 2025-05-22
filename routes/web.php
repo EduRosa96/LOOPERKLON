@@ -1,21 +1,31 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoopController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 
-// Página principal muestra los loops
-Route::get('/', [LoopController::class, 'index'])->name('loops.index');
-
-// Mostrar todos los loops
-Route::get('/loops', [LoopController::class, 'index']);
-
-// Formulario para crear un loop
-Route::get('/loops/create', [LoopController::class, 'create'])->name('loops.create');
-
-// Guardar un nuevo loop
-Route::post('/loops', [LoopController::class, 'store'])->name('loops.store');
-
-// Ruta de prueba (puedes eliminarla si no la usas)
-Route::get('/task', function () {
-    return "task desde web.php";
+// Página de inicio → redirige al listado de loops
+Route::get('/', function () {
+    return redirect()->route('loops.index');
 });
+
+// Panel de usuario (dashboard)
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+// Rutas públicas
+Route::get('/loops', [LoopController::class, 'index'])->name('loops.index');
+
+// Rutas protegidas (requieren login)
+Route::middleware('auth')->group(function () {
+    Route::get('/loops/create', [LoopController::class, 'create'])->name('loops.create');
+    Route::post('/loops', [LoopController::class, 'store'])->name('loops.store');
+
+    // Perfil
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('loop_tag', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('loop_id')->constrained()->onDelete('cascade');
-            $table->foreignId('tag_id')->constrained()->onDelete('cascade');
+        Schema::table('loops', function (Blueprint $table) {
+            //
         });
     }
 
@@ -23,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('loop_tag');
+        Schema::table('loops', function (Blueprint $table) {
+            //
+        });
     }
 };

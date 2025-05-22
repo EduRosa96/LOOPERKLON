@@ -33,7 +33,7 @@ class LoopController extends Controller
 
         $filename = $request->file('filename')->store('loops', 'public');
 
-        $loop = Loop::create([
+        $loop = new Loop([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'bpm' => $request->input('bpm'),
@@ -41,10 +41,19 @@ class LoopController extends Controller
             'filename' => $filename,
         ]);
 
+        $loop->user_id = auth()->id(); // Aquí guardamos el usuario que sube el loop
+        $loop->save();
+
         // Procesar etiquetas (formato Tagify)
         if ($request->filled('tags')) {
+            $tagsArray = [];
+
             $tagsJson = $request->input('tags');
-            $tagsArray = collect(json_decode($tagsJson))->pluck('value')->toArray();
+            $decoded = json_decode($tagsJson);
+
+            if (is_array($decoded)) {
+                $tagsArray = collect($decoded)->pluck('value')->toArray();
+            }
 
             $tagIds = collect($tagsArray)
                 ->filter(fn($tag) => trim($tag) !== '')

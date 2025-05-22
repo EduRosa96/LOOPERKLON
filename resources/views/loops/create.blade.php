@@ -60,3 +60,5 @@
     </script>
 </div>
 @endsection
+
+{{-- CDN de Bootstrap --}} 
