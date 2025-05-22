@@ -1,21 +1,23 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
-import forms from '@tailwindcss/forms';
-
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: [
-        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
-    ],
-
-    theme: {
-        extend: {
-            fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-            },
-        },
+  darkMode: 'class', // usa 'class' para modo oscuro activado por clase
+  content: [
+    './resources/**/*.blade.php',
+    './resources/**/*.js',
+    './resources/**/*.vue',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: '#e63946',
+        darkbg: '#0f0f0f',
+        darkcard: '#1e1e1e',
+        accent: '#ff6b6b',
+      },
+      fontFamily: {
+        sans: ['Instrument Sans', 'sans-serif'],
+      },
     },
-
-    plugins: [forms],
-};
+  },
+  plugins: [],
+}

@@ -16,3 +16,4 @@ class Tag extends Model
         return $this->belongsToMany(Loop::class);
     }
 }
+

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 // Página de inicio → redirige al listado de loops
 Route::get('/', function () {
-    return redirect()->route('loops.index');
+    return view('welcome');
 });
 
 // Panel de usuario (dashboard)
@@ -27,5 +27,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::get('/loops', [LoopController::class, 'list'])->name('loops.index');
+Route::get('/loops/tag/{tag}', [LoopController::class, 'byTag'])->name('loops.byTag');
 
-require __DIR__.'/auth.php';
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [ProfileController::class, 'dashboard'])->name('dashboard');
+    Route::post('/dashboard/photo', [ProfileController::class, 'updatePhoto'])->name('dashboard.photo');
+});
+
+require __DIR__ . '/auth.php';

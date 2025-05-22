@@ -8,18 +8,47 @@ use Illuminate\Http\Request;
 
 class LoopController extends Controller
 {
+    public function byTag(Tag $tag, Request $request)
+    {
+        $query = $tag->loops()->with('user', 'tags')->latest();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%$search%")
+                    ->orWhere('key_signature', 'like', "%$search%")
+                    ->orWhere('bpm', 'like', "%$search%")
+                    ->orWhereHas('user', fn($u) => $u->where('name', 'like', "%$search%"))
+                    ->orWhereHas('tags', fn($t) => $t->where('name', 'like', "%$search%"));
+            });
+        }
+
+
+        $loops = $query->get();
+
+        return view('loops.index', compact('loops', 'tag'));
+    }
+
     public function create()
     {
         $tags = Tag::all();
         return view('loops.create', compact('tags'));
     }
 
-    public function index()
-
+    public function list(Request $request) // <- Renombrado para evitar conflicto
     {
-        $loops = Loop::all();
+        $query = Loop::with('user', 'tags')->latest();
+
+        if ($request->filled('search')) {
+            $query->where('title', 'like', '%' . $request->search . '%');
+        }
+
+        $loops = $query->get();
+
         return view('loops.index', compact('loops'));
     }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -33,7 +62,7 @@ class LoopController extends Controller
 
         $filename = $request->file('filename')->store('loops', 'public');
 
-        $loop = new Loop([
+        $loop = Loop::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'bpm' => $request->input('bpm'),
@@ -41,19 +70,9 @@ class LoopController extends Controller
             'filename' => $filename,
         ]);
 
-        $loop->user_id = auth()->id(); // Aquí guardamos el usuario que sube el loop
-        $loop->save();
-
-        // Procesar etiquetas (formato Tagify)
         if ($request->filled('tags')) {
-            $tagsArray = [];
-
             $tagsJson = $request->input('tags');
-            $decoded = json_decode($tagsJson);
-
-            if (is_array($decoded)) {
-                $tagsArray = collect($decoded)->pluck('value')->toArray();
-            }
+            $tagsArray = collect(json_decode($tagsJson))->pluck('value')->toArray();
 
             $tagIds = collect($tagsArray)
                 ->filter(fn($tag) => trim($tag) !== '')

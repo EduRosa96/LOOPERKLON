@@ -1,0 +1,14 @@
+//PASO 1: Sobrescribir colores de Bootstrap
+$theme-colors: (
+  "primary": #e63946,
+  "secondary": #457b9d,
+  "success": #2a9d8f,
+  "danger": #e76f51,
+  "warning": #f4a261,
+  "info": #a8dadc,
+  "light": #f1faee,
+  "dark": #1d3557
+);
+
+// Importar todo Bootstrap
+@import "node_modules/bootstrap/scss/bootstrap";
