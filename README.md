@@ -1,8 +1,3 @@
-¡Claro! Aquí tienes un ejemplo de `README.md` adaptado para tu proyecto **LooperKlon**, con tu logo personalizado, una breve introducción, características, cómo instalarlo y capturas de pantalla (puedes añadirlas si las tienes):
-
----
-
-````markdown
 <p align="center">
     <img src="https://looperklon.com/storage/logo.png" width="200" alt="LooperKlon Logo">
 </p>
@@ -42,7 +37,7 @@ composer install
 npm install && npm run dev
 cp .env.example .env
 php artisan key:generate
-````
+```
 
 Configura tu base de datos en `.env`, luego ejecuta:
 
@@ -54,18 +49,18 @@ php artisan serve
 
 ## 📷 Capturas
 
-> Puedes añadir capturas con:
-> `![Inicio](screenshots/home.png)`
+> Puedes añadir capturas con:  
+> `![Inicio](screenshots/home.png)`  
 > `![Dashboard](screenshots/dashboard.png)`
 
 ## 🛠️ Tecnologías usadas
 
-* Laravel 10
-* Bootstrap 5
-* JavaScript + WaveSurfer.js
-* Tagify (para etiquetas)
-* MySQL / SQLite
-* Breeze (autenticación)
+- Laravel 10
+- Bootstrap 5
+- JavaScript + WaveSurfer.js
+- Tagify (para etiquetas)
+- MySQL / SQLite
+- Breeze (autenticación)
 
 ## 📃 Licencia
 
@@ -74,16 +69,3 @@ Este proyecto está bajo la licencia [MIT](https://opensource.org/licenses/MIT).
 ---
 
 > Desarrollado con ❤️ por EduRosa & contributors.
-
-```
-
----
-
-### ✅ Qué debes hacer
-
-1. **Reemplaza** el enlace del logo con la URL real de tu logo si está en `public` o `storage`.
-2. **Sube capturas** al directorio `screenshots/` si deseas mostrar ejemplos.
-3. **Personaliza tu repositorio GitHub** agregando este archivo como `README.md`.
-
-¿Quieres que lo genere directamente en tu proyecto como archivo listo para usar?
-```
