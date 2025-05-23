@@ -20,6 +20,7 @@
     "dependencies": {
         "bootstrap": "^5.3.6",
         "botstrap": "^0.20.1",
-        "sass": "^1.89.0"
+        "sass": "^1.89.0",
+        "wavesurfer.js": "^7.9.5"
     }
 }

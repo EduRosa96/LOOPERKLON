@@ -46,4 +46,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function loops()
+    {
+        return $this->hasMany(\App\Models\Loop::class);
+    }
 }

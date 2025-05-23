@@ -6,6 +6,7 @@ use App\Models\Loop;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 
+
 class LoopController extends Controller
 {
     public function byTag(Tag $tag, Request $request)
@@ -56,7 +57,6 @@ class LoopController extends Controller
             'description' => 'nullable|string',
             'bpm' => 'nullable|integer',
             'key_signature' => 'nullable|string|max:10',
-            'tags' => 'nullable|string',
             'filename' => 'required|file|mimes:mp3,wav',
         ]);
 
@@ -67,7 +67,8 @@ class LoopController extends Controller
             'description' => $request->input('description'),
             'bpm' => $request->input('bpm'),
             'key_signature' => $request->input('key_signature'),
-            'filename' => $filename,
+            'filename' => $filename, // ← Aquí el valor correcto
+            'user_id' => auth()->id(),
         ]);
 
         if ($request->filled('tags')) {
