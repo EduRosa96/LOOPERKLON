@@ -1,7 +1,6 @@
 <p align="center">
     <img src="https://i.imgur.com/LIInH6v.png" width="200" alt="LooperKlon Logo">
 </p>
-<h1 align="center">LooperKlon</h1>
 
 <p align="center">
     🎧 Plataforma colaborativa de loops musicales desarrollada en Laravel.
