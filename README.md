@@ -53,7 +53,7 @@ php artisan serve
 
 ## 🛠️ Tecnologías usadas
 
-- Laravel 10
+- Laravel 12
 - Bootstrap 5
 - JavaScript + WaveSurfer.js
 - Tagify (para etiquetas)
@@ -66,4 +66,4 @@ Este proyecto está bajo la licencia [MIT](https://opensource.org/licenses/MIT).
 
 ---
 
-> Desarrollado con ❤️ por EduRosa & contributors.
+> Desarrollado con ❤️ por EduRosa.
