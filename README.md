@@ -1,5 +1,5 @@
 <p align="center">
-    <blockquote class="imgur-embed-pub" lang="en" data-id="a/QhTunC2"  ><a href="//imgur.com/a/QhTunC2">logo looperklon</a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+    <img src="https://imgur.com/a/logo-looperklon-QhTunC2" width="200" alt="LooperKlon Logo">
 </p>
 <h1 align="center">LooperKlon</h1>
 
