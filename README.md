@@ -1,7 +1,6 @@
 <p align="center">
-    <img src="storage\app\public\logo.png" width="200" alt="LooperKlon Logo">
+    <img src="https://raw.githubusercontent.com/TU_USUARIO/TU_REPOSITORIO/main/public/logo.png" width="200" alt="LooperKlon Logo">
 </p>
-
 <h1 align="center">LooperKlon</h1>
 
 <p align="center">
