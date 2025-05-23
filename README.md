@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://imgur.com/a/3sHY0lK" width="200" alt="LooperKlon Logo">
+    <img src="https://imgur.com/a/QhTunC2" width="200" alt="LooperKlon Logo">
 </p>
 <h1 align="center">LooperKlon</h1>
 
