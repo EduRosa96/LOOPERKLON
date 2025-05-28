@@ -29,7 +29,7 @@
         padding: 20px;
         margin-bottom: 20px;
         color: #fff;
-        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     }
 
     .waveform {
@@ -47,10 +47,11 @@
         margin-right: 5px;
         font-size: 0.8rem;
     }
+
     .loop-author {
-    color: #f4a261;
-    font-weight: 500;
-}
+        color: #f4a261;
+        font-weight: 500;
+    }
 </style>
 
 <div class="section-header">
@@ -63,9 +64,9 @@
 </div>
 
 @if (isset($tag))
-    <div class="mb-3 text-center">
-        <a href="{{ route('loops.index') }}" class="btn btn-outline-light btn-sm">← Ver todos los loops</a>
-    </div>
+<div class="mb-3 text-center">
+    <a href="{{ route('loops.index') }}" class="btn btn-outline-light btn-sm">← Ver todos los loops</a>
+</div>
 @endif
 
 <form method="GET" action="{{ route('loops.index') }}" class="mb-4 search-bar">
@@ -92,14 +93,17 @@
         <button id="btn-{{ $item->id }}" class="btn btn-outline-primary btn-sm" onclick="togglePlay('{{ $item->id }}')">
             <span class="icon">▶ Reproducir</span>
         </button>
+        <a href="{{ asset('storage/' . $item->filename) }}" class="btn btn-outline-success btn-sm d-flex align-items-center gap-1" download>
+            ⬇ <span>Descargar</span>
+        </a>
 
         <input type="range"
-               id="volume-{{ $item->id }}"
-               class="form-range"
-               min="0" max="1" step="0.01"
-               style="width: 120px;"
-               oninput="setVolume('{{ $item->id }}', this.value)"
-               value="1">
+            id="volume-{{ $item->id }}"
+            class="form-range"
+            min="0" max="1" step="0.01"
+            style="width: 120px;"
+            oninput="setVolume('{{ $item->id }}', this.value)"
+            value="1">
     </div>
 
     <audio id="audio-{{ $item->id }}" src="{{ asset('storage/' . $item->filename) }}" class="d-none"></audio>
