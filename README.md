@@ -72,8 +72,6 @@ No. Necesitas crear una cuenta e iniciar sesión para poder subir contenido.
 ### ¿Dónde se actualiza la foto de perfil?
 Desde el panel de usuario (dashboard), puedes subir una nueva foto en la sección de perfil.
 
-```
-
 ## 📃 Licencia
 
 Este proyecto está bajo la licencia [MIT](https://opensource.org/licenses/MIT).
