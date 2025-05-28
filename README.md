@@ -1,9 +1,10 @@
+
 <p align="center">
     <img src="https://i.imgur.com/LIInH6v.png" width="200" alt="LooperKlon Logo">
 </p>
 
 <p align="center">
-    🎧 Plataforma colaborativa de loops musicales desarrollada en Laravel.
+    Plataforma colaborativa de loops musicales desarrollada en Laravel.
 </p>
 
 <p align="center">
@@ -45,12 +46,6 @@ php artisan storage:link
 php artisan serve
 ```
 
-## 📷 Capturas
-
-> Puedes añadir capturas con:  
-> `![Inicio](screenshots/home.png)`  
-> `![Dashboard](screenshots/dashboard.png)`
-
 ## 🛠️ Tecnologías usadas
 
 - Laravel 12
@@ -59,6 +54,25 @@ php artisan serve
 - Tagify (para etiquetas)
 - MySQL / SQLite
 - Breeze (autenticación)
+
+## 🙋 Preguntas Frecuentes (FAQ)
+
+### ¿Qué tipo de archivos puedo subir?
+Actualmente se permiten archivos `.mp3` y `.wav`.
+
+### ¿Dónde se almacenan los archivos?
+Los archivos se almacenan en `storage/app/public/loops`. Laravel los sirve a través del enlace simbólico creado con `php artisan storage:link`.
+
+### ¿Por qué no se ve mi logo o mis archivos?
+Verifica que hayas ejecutado `php artisan storage:link` y que tus archivos estén dentro de `storage/app/public`.
+
+### ¿Puedo subir loops sin estar registrado?
+No. Necesitas crear una cuenta e iniciar sesión para poder subir contenido.
+
+### ¿Dónde se actualiza la foto de perfil?
+Desde el panel de usuario (dashboard), puedes subir una nueva foto en la sección de perfil.
+
+```
 
 ## 📃 Licencia
 
